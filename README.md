@@ -1,2 +1,1 @@
-# JS-Features
- 
+Applied JS studies

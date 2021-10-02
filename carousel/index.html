@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Carousel</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div style="padding:20px;">
+
+            <div id="carousel" style="width:100%;overflow-x:hidden;">	
+                <div style="display:flex;float:left;width:300%;">
+                    <div style="width:100%;justify-content:center;"><img style="width:100%;max-width:1968px;" src="images/banner-1.jpg" alt="banner-1"></div>
+                    <div style="width:100%;justify-content:center;"><img style="width:100%;max-width:1968px;" src="images/banner-2.jpg" alt="banner-2"></div>
+                    <div style="width:100%;justify-content:center;"><img style="width:100%;max-width:1968px;" src="images/banner-3.jpg" alt="banner-3" ></div>
+                </div>
+            </div>
+            
+            <div id="divRotative" style="position:relative;background-color:rgba(0,0,0,0.5);width:100%;height:38px;padding-top:7px;box-sizing: border-box;text-align:center;">
+                <a href="javascript:carouselPosition(0);" style="margin-left:0px;"  id="carouselIcon0">O</a>
+                <a href="javascript:carouselPosition(1);" style="margin-left:20px;" id="carouselIcon1">O</a>
+                <a href="javascript:carouselPosition(2);" style="margin-left:20px;" id="carouselIcon2">O</a>
+                <br/><br/>
+            </div>
+
+        </div>
+
+        <script src="carousel.js"></script>
+
+    </body>
+</html>
