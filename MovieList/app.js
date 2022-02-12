@@ -40,6 +40,12 @@ class UI{
 
         list.appendChild(row);
     }
+
+    static clearFields(){
+        document.getElementById('title').value = '';
+        document.getElementById('director').value = '';
+        document.getElementById('year').value = '';
+    }
 }
 
 
@@ -49,5 +55,23 @@ class UI{
 document.addEventListener('DOMContentLoaded', UI.displayMovies);
 
 // Event: Add a Movie
+document.getElementById('movie-form').addEventListener('submit', (e) => {
+    // Prevent actual submit
+    e.preventDefault();
+
+   // Get form values
+   const title = document.getElementById('title').value;
+   const director = document.getElementById('director').value;
+   const year = document.getElementById('year').value;
+
+   //Instance of Movie Class
+   const movie = new Movie(title, director, year);
+
+   // Add Movie to UI
+   UI.addMovieToList(movie);
+
+   // Clear fields
+   UI.clearFields();
+} );
 
 // Event: Remove a Movie
