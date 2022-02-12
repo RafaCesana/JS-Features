@@ -42,7 +42,7 @@ class UI{
     }
 
     static deleteMovie(target){
-        if( target.classMovie.contains('delete') ){
+        if( target.classList.contains('delete') ){
             // removing the entire <tr> witch elements that contains 'delete' in <tbody>.
             // the target witch contains the 'delete' is a <a>. The parent is <td>, and the parent again is the <tr>.
             target.parentElement.parentElement.remove();
@@ -97,6 +97,9 @@ document.getElementById('movie-form').addEventListener('submit', (e) => {
         // Add Movie to UI
         UI.addMovieToList(movie);
 
+        // Show success message
+        UI.showAlert('Book Added', 'success');
+
         // Clear fields
         UI.clearFields();
    }
@@ -105,4 +108,7 @@ document.getElementById('movie-form').addEventListener('submit', (e) => {
 // Event: Remove a Movie
 document.getElementById('movie-list').addEventListener('click', (e) => {
     UI.deleteMovie(e.target);
+
+    // Show success message
+    UI.showAlert('Book Removed', 'success');
 });
