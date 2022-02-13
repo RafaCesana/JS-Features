@@ -10,6 +10,8 @@ class Movie{
 // UI Class: Handle UI Tasks
 class UI{
     static displayMovies(){
+
+        /* How it was before the Local Storage works
         const StoredMovies = [
             {
                 title: 'Don\'t Look Up',
@@ -22,7 +24,10 @@ class UI{
                 year: '2021'
             }
         ];
+
         const movies = StoredMovies;
+        */
+        const movies = Store.getMovies();
 
         movies.forEach( (movie) => UI.addMovieToList(movie) );
     }
@@ -73,6 +78,38 @@ class UI{
 
 
 // Store Class: Handles Storage
+class Store{
+    static getMovies(){
+        let movies;
+        if( localStorage.getItem('movies') === null ){
+            movies = [];
+        } else{
+            movies = JSON.parse(localStorage.getItem('movies'));       
+        }
+        return movies;
+    }
+
+    static addMovie(movie){
+        const movies = Store.getMovies();
+
+        movies.push(movie);
+
+        localStorage.setItem('movies', JSON.stringify(movies));
+    }
+
+    static removieMovie(year){
+        const movies = Store.getMovies();
+
+        movies.forEach( (movie, index) =>
+        {
+            if( movie.year === year ){
+                movies.splice(index, 1);
+            }
+        });
+
+        localStorage.setItem('movies', JSON.stringify(movies));
+    }
+}
 
 // Event: Display Movies
 document.addEventListener('DOMContentLoaded', UI.displayMovies);
@@ -97,6 +134,9 @@ document.getElementById('movie-form').addEventListener('submit', (e) => {
         // Add Movie to UI
         UI.addMovieToList(movie);
 
+        // Add Movie to Store
+        Store.addMovie(movie);
+
         // Show success message
         UI.showAlert('Book Added', 'success');
 
@@ -107,7 +147,12 @@ document.getElementById('movie-form').addEventListener('submit', (e) => {
 
 // Event: Remove a Movie
 document.getElementById('movie-list').addEventListener('click', (e) => {
+    // Remove Movie from UI
     UI.deleteMovie(e.target);
+
+    // Remove Movie from Store
+    // The parameter is the <td> of year. Its the sibling of <td> that contains the tag <a> with 'delete'.
+    Store.removieMovie(e.target.parentElement.previousElementSibling.textContent);
 
     // Show success message
     UI.showAlert('Book Removed', 'success');
