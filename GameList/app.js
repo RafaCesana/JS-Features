@@ -6,3 +6,16 @@ class Game{
         this.year      = yearDate;
     }
 }
+
+// Event: Add a Game
+document.getElementById('game-form').addEventListener('submit', () => { 
+
+    // Get Form values
+    const gameName             = document.getElementById('gameName').value;
+    const developerCompanyName = document.getElementById('developerCompanyName').value;
+    const yearDate             = document.getElementById('yearDate').value;
+
+    var R = alert(gameName +' '+ developerCompanyName +' '+ yearDate);
+
+    return R
+} );
