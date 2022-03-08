@@ -7,6 +7,13 @@ class Game{
     }
 }
 
+// UI Class: Handle UI Tasks
+class UI{
+    static addGameToList(game){
+        alert(game+' ff');
+    }
+}
+
 // Event: Add a Game
 document.getElementById('game-form').addEventListener('submit', () => { 
 
@@ -15,7 +22,9 @@ document.getElementById('game-form').addEventListener('submit', () => {
     const developerCompanyName = document.getElementById('developerCompanyName').value;
     const yearDate             = document.getElementById('yearDate').value;
 
-    var R = alert(gameName +' '+ developerCompanyName +' '+ yearDate);
+    // Instance of Game Class
+    const game = new Game(gameName, developerCompanyName, yearDate);
 
-    return R
+    // Add Game to UI
+    UI.addGameToList(game);
 } );
