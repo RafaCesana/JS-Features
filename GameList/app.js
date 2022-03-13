@@ -10,9 +10,36 @@ class Game{
 // UI Class: Handle UI Tasks
 class UI{
     static addGameToList(game){
-        alert(game+' ff');
+        const gameList = document.getElementById('game-list')
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${game.gameTitle}</td>
+            <td>${game.developer}</td>
+            <td>${game.year}</td>
+            <td><a href="#" class="btn btn-danger btn-sm delete"></td>
+        `;
+        gameList.appendChild(row);
+    }
+
+    static displayGames(){
+        //How it was before the Local Storage works
+        const aux = [
+            {
+                gameTitle: 'GTA V',
+                developer: 'Rockstar',
+                year: '2022'
+            },
+            {
+                gameTitle: 'Horizon',
+                developer: 'Guerrilla Games',
+                year: '2022'
+            }
+        ];
+        aux.forEach( (g) => UI.addGameToList(g) );
     }
 }
+
+// PROGRAM
 
 // Event: Add a Game
 document.getElementById('game-form').addEventListener('submit', () => { 
@@ -28,3 +55,6 @@ document.getElementById('game-form').addEventListener('submit', () => {
     // Add Game to UI
     UI.addGameToList(game);
 } );
+
+// Event: Display Games  
+document.addEventListener('DOMContentLoaded', UI.displayGames());
